@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33627.172
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Translater", "Translater.vcxproj", "{7531743B-A8D2-4215-A813-CA620101B389}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7531743B-A8D2-4215-A813-CA620101B389}.Debug|x64.ActiveCfg = Debug|x64
+		{7531743B-A8D2-4215-A813-CA620101B389}.Debug|x64.Build.0 = Debug|x64
+		{7531743B-A8D2-4215-A813-CA620101B389}.Debug|x86.ActiveCfg = Debug|Win32
+		{7531743B-A8D2-4215-A813-CA620101B389}.Debug|x86.Build.0 = Debug|Win32
+		{7531743B-A8D2-4215-A813-CA620101B389}.Release|x64.ActiveCfg = Release|x64
+		{7531743B-A8D2-4215-A813-CA620101B389}.Release|x64.Build.0 = Release|x64
+		{7531743B-A8D2-4215-A813-CA620101B389}.Release|x86.ActiveCfg = Release|Win32
+		{7531743B-A8D2-4215-A813-CA620101B389}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D6ADB456-FF00-498B-925F-705E8E76F740}
+	EndGlobalSection
+EndGlobal
