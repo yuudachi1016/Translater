@@ -3,6 +3,7 @@
 #include "RequstAPI.h"
 #include "json.hpp"
 #include "URLEncode.h"
+#include "File.h"
 
 #include <random>
 #include <iostream>
@@ -54,13 +55,28 @@ std::vector<std::string> BaiDuEngine::TranslateBatch(const std::vector<std::stri
 
 void BaiDuEngine::LoadDataFile()
 {
-    m_requstURL = "https://fanyi-api.baidu.com/api/trans/vip/translate";
-    m_appId     = "";
-    m_apiKey    = "";
-    m_from      = "zh";
-    m_to        = "en";
-    m_qpsMax    = 1;
-    m_lengthMax = 2000;
+    std::string config       = File::ReadFile("config.txt");
+    nlohmann::json json_obj  = nlohmann::json::parse(config);
+    nlohmann::json baidu_obj = json_obj["engine"]["BaiDu"];
+
+    m_from = json_obj["from"];
+    m_to   = json_obj["to"];
+
+    m_requstURL = baidu_obj["requstURL"];
+    m_apiKey    = baidu_obj["apiKey"];
+    m_appId     = baidu_obj["appId"];
+
+    std::string qps = baidu_obj["qps"];
+    if (qps.empty())
+        m_qpsMax = 1;
+    else
+        m_qpsMax = std::atoi(qps.data());
+
+    std::string length = baidu_obj["length"];
+    if (length.empty())
+        m_lengthMax = 100;
+    else
+        m_lengthMax = std::atoi(length.data());
 }
 
 std::vector<std::string> BaiDuEngine::GetTextGroup(const std::vector<std::string>& fileText)

@@ -1,0 +1,13 @@
+{
+    "from": "zh",
+    "to": "en",
+    "engine": {
+        "BaiDu": {
+            "requstURL": "https://fanyi-api.baidu.com/api/trans/vip/translate",
+            "apiKey": "",
+            "appId": "",
+            "qps": "1",
+            "length": "2000"
+        }
+    }
+}

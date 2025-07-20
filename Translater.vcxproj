@@ -22,6 +22,7 @@
     <ClCompile Include="src\algorithm\Base64.cpp" />
     <ClCompile Include="src\algorithm\EncryptMD5.cpp" />
     <ClCompile Include="src\algorithm\URLEncode.cpp" />
+    <ClCompile Include="src\file\File.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\network\RequstAPI.cpp" />
     <ClCompile Include="src\transEngine\BaiDuEngine.cpp" />
@@ -31,6 +32,7 @@
     <ClInclude Include="src\algorithm\Base64.h" />
     <ClInclude Include="src\algorithm\EncryptMD5.h" />
     <ClInclude Include="src\algorithm\URLEncode.h" />
+    <ClInclude Include="src\file\File.h" />
     <ClInclude Include="src\json\json.hpp" />
     <ClInclude Include="src\network\RequstAPI.h" />
     <ClInclude Include="src\transEngine\BaiDuEngine.h" />
@@ -123,9 +125,9 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;HV_STATICLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;HV_STATICLIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\src\;$(SolutionDir)\src\algorithm;$(SolutionDir)\src\hv;$(SolutionDir)\src\json;$(SolutionDir)\src\network;$(SolutionDir)\src\transEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\src\;$(SolutionDir)\src\algorithm;$(SolutionDir)\src\hv;$(SolutionDir)\src\json;$(SolutionDir)\src\network;$(SolutionDir)\src\transEngine;$(SolutionDir)\src\file;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -140,9 +142,9 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;HV_STATICLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;HV_STATICLIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\src\;$(SolutionDir)\src\algorithm;$(SolutionDir)\src\hv;$(SolutionDir)\src\json;$(SolutionDir)\src\network;$(SolutionDir)\src\transEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\src\;$(SolutionDir)\src\algorithm;$(SolutionDir)\src\hv;$(SolutionDir)\src\json;$(SolutionDir)\src\network;$(SolutionDir)\src\transEngine;$(SolutionDir)\src\file;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

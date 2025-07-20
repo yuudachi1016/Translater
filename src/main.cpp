@@ -1,6 +1,8 @@
 #include <iostream>
 #include "BaiDuEngine.h"
 #include "URLEncode.h"
+#include <thread>
+#include <chrono>
 using namespace std;
 int main()
 {
@@ -25,6 +27,8 @@ int main()
 
     result = ptr->TranslateText(str);
     cout << result << endl;
+
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 
     std::vector<std::string> result2;
     result2 = ptr->TranslateBatch(vec);
