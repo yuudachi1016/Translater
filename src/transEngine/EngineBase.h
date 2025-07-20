@@ -1,6 +1,13 @@
 #pragma once
 #include <string>
 #include <vector>
+
+struct TextBlock
+{
+    int start_idx;                  // block对应texts里的起始序号
+    std::vector<std::string> lines; // 这一批block内的原字符串
+};
+
 class EngineBase
 {
 public:
@@ -23,7 +30,7 @@ protected:
     virtual void LoadDataFile() = 0;
 
     // 文本分组
-    virtual std::vector<std::string> GetTextGroup(const std::vector<std::string>& text) = 0;
+    virtual std::vector<TextBlock> GetTextGroup(const std::vector<std::string>& text) = 0;
 
     // 生成请求
     virtual std::string GetRequst(const std::string&)              = 0;

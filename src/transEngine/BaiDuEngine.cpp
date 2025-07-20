@@ -33,26 +33,28 @@ std::string BaiDuEngine::TranslateText(const std::string& text)
 
 std::vector<std::string> BaiDuEngine::TranslateBatch(const std::vector<std::string>& texts)
 {
-    std::vector<std::string> result;
-    std::mutex resultMutex;
-    ThreadPool pool(4);
+    std::vector<std::string> result(texts.size());
 
     // 速率限制器 - 每秒m_qpsMax个请求
     RateLimiter limiter(m_qpsMax);
-
-    std::vector<std::string> reqTexts = GetTextGroup(texts);
+    ThreadPool pool(4);
+    std::mutex resultMutex;
     std::vector<std::future<void>> futures;
+
+    std::vector<TextBlock> reqTexts = GetTextGroup(texts);
+
     for (auto& req : reqTexts)
     {
         auto func = [&]() {
             limiter.wait(); // 等待获取请求许可
 
-            std::vector<std::tuple<std::string, std::string>> res = ToRequst(req);
+            std::vector<std::tuple<std::string, std::string>> res = ToRequst(GetRequst(req.lines));
+            if (res.empty()) return;
 
             std::lock_guard<std::mutex> lock(resultMutex);
-            for (auto& srcdst : res)
+            for (int index = 0; index < res.size(); index++)
             {
-                result.push_back(std::get<1>(srcdst));
+                result[req.start_idx + index] = std::get<1>(res[index]);
             }
         };
         futures.push_back(pool.enqueue(func));
@@ -91,22 +93,24 @@ void BaiDuEngine::LoadDataFile()
         m_lengthMax = std::atoi(length.data());
 }
 
-std::vector<std::string> BaiDuEngine::GetTextGroup(const std::vector<std::string>& fileText)
+std::vector<TextBlock> BaiDuEngine::GetTextGroup(const std::vector<std::string>& fileText)
 {
-    std::vector<std::string> result;
+    std::vector<TextBlock> result;
 
-    int reqLen = 0;
+    int reqLen      = 0;
+    int block_start = 0;
     std::vector<std::string> reqText;
     for (int i = 0; i < fileText.size(); i++)
     {
         if (reqLen + fileText[i].size() >= m_lengthMax)
         {
             if (!reqText.empty())
-                result.push_back(GetRequst(reqText));
+                result.push_back({block_start, reqText});
 
             reqText.clear();
             reqText.push_back(fileText[i]);
-            reqLen = fileText[i].size();
+            reqLen      = fileText[i].size();
+            block_start = i;
         }
         else
         {
@@ -116,7 +120,7 @@ std::vector<std::string> BaiDuEngine::GetTextGroup(const std::vector<std::string
     }
     if (!reqText.empty())
     {
-        result.push_back(GetRequst(reqText));
+        result.push_back({block_start, reqText});
     }
     return result;
 }

@@ -18,7 +18,7 @@ protected:
     void LoadDataFile();
 
     // 文本分组
-    std::vector<std::string> GetTextGroup(const std::vector<std::string>& text);
+    std::vector<TextBlock> GetTextGroup(const std::vector<std::string>& text);
 
     // 生成请求
     std::string GetRequst(const std::string& str);
