@@ -4,6 +4,8 @@
 #include "json.hpp"
 #include "URLEncode.h"
 #include "File.h"
+#include "ThreadPool.h"
+#include "RateLimiter.h"
 
 #include <random>
 #include <iostream>
@@ -11,6 +13,7 @@
 #include <atomic>
 #include <chrono>
 #include <thread>
+#include <mutex>
 
 BaiDuEngine::BaiDuEngine()
 {
@@ -30,25 +33,34 @@ std::string BaiDuEngine::TranslateText(const std::string& text)
 
 std::vector<std::string> BaiDuEngine::TranslateBatch(const std::vector<std::string>& texts)
 {
-    std::atomic<int> count = 0;
     std::vector<std::string> result;
+    std::mutex resultMutex;
+    ThreadPool pool(4);
+
+    // 速率限制器 - 每秒m_qpsMax个请求
+    RateLimiter limiter(m_qpsMax);
 
     std::vector<std::string> reqTexts = GetTextGroup(texts);
+    std::vector<std::future<void>> futures;
     for (auto& req : reqTexts)
     {
-        std::vector<std::tuple<std::string, std::string>> res = ToRequst(req);
-        for (auto& srcdst : res)
-        {
-            std::string src = std::get<1>(srcdst);
-            std::string dst = std::get<1>(srcdst);
-            result.push_back(dst);
-        }
+        auto func = [&]() {
+            limiter.wait(); // 等待获取请求许可
 
-        count++;
-        if (count % m_qpsMax == 0)
-        {
-            std::this_thread::sleep_for(std::chrono::seconds(1));
-        }
+            std::vector<std::tuple<std::string, std::string>> res = ToRequst(req);
+
+            std::lock_guard<std::mutex> lock(resultMutex);
+            for (auto& srcdst : res)
+            {
+                result.push_back(std::get<1>(srcdst));
+            }
+        };
+        futures.push_back(pool.enqueue(func));
+    }
+
+    for (auto& future : futures)
+    {
+        future.get();
     }
     return result;
 }
@@ -87,17 +99,19 @@ std::vector<std::string> BaiDuEngine::GetTextGroup(const std::vector<std::string
     std::vector<std::string> reqText;
     for (int i = 0; i < fileText.size(); i++)
     {
-        reqText.push_back(fileText[i]);
-        reqLen += fileText[i].size();
-        if (reqLen > m_lengthMax)
+        if (reqLen + fileText[i].size() >= m_lengthMax)
         {
-            reqText.pop_back();
-            reqLen -= fileText[i].size();
-
-            result.push_back(GetRequst(reqText));
+            if (!reqText.empty())
+                result.push_back(GetRequst(reqText));
 
             reqText.clear();
-            reqLen = 0;
+            reqText.push_back(fileText[i]);
+            reqLen = fileText[i].size();
+        }
+        else
+        {
+            reqText.push_back(fileText[i]);
+            reqLen += fileText[i].size();
         }
     }
     if (!reqText.empty())

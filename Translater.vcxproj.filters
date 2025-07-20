@@ -40,6 +40,15 @@
     <Filter Include="源文件\file">
       <UniqueIdentifier>{7bf0de9d-7e88-435f-b1d4-8083be8b8202}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\thread">
+      <UniqueIdentifier>{ee4e996f-a021-4773-ba56-3a989d8f0739}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\limiter">
+      <UniqueIdentifier>{dc0923c3-ca69-4942-8792-f3cb821f16a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\limiter">
+      <UniqueIdentifier>{46383baf-02df-4790-9fea-74e8f16a46e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -66,6 +75,9 @@
     <ClCompile Include="src\file\File.cpp">
       <Filter>源文件\file</Filter>
     </ClCompile>
+    <ClCompile Include="src\limiter\RateLimiter.cpp">
+      <Filter>源文件\limiter</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\transEngine\EngineBase.h">
@@ -91,6 +103,12 @@
     </ClInclude>
     <ClInclude Include="src\file\File.h">
       <Filter>头文件\file</Filter>
+    </ClInclude>
+    <ClInclude Include="src\thread\ThreadPool.h">
+      <Filter>头文件\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="src\limiter\RateLimiter.h">
+      <Filter>头文件\limiter</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

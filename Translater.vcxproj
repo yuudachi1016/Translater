@@ -23,6 +23,7 @@
     <ClCompile Include="src\algorithm\EncryptMD5.cpp" />
     <ClCompile Include="src\algorithm\URLEncode.cpp" />
     <ClCompile Include="src\file\File.cpp" />
+    <ClCompile Include="src\limiter\RateLimiter.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\network\RequstAPI.cpp" />
     <ClCompile Include="src\transEngine\BaiDuEngine.cpp" />
@@ -34,7 +35,9 @@
     <ClInclude Include="src\algorithm\URLEncode.h" />
     <ClInclude Include="src\file\File.h" />
     <ClInclude Include="src\json\json.hpp" />
+    <ClInclude Include="src\limiter\RateLimiter.h" />
     <ClInclude Include="src\network\RequstAPI.h" />
+    <ClInclude Include="src\thread\ThreadPool.h" />
     <ClInclude Include="src\transEngine\BaiDuEngine.h" />
     <ClInclude Include="src\transEngine\EngineBase.h" />
   </ItemGroup>
@@ -127,7 +130,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;HV_STATICLIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\src\;$(SolutionDir)\src\algorithm;$(SolutionDir)\src\hv;$(SolutionDir)\src\json;$(SolutionDir)\src\network;$(SolutionDir)\src\transEngine;$(SolutionDir)\src\file;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\src\;$(SolutionDir)\src\algorithm;$(SolutionDir)\src\hv;$(SolutionDir)\src\json;$(SolutionDir)\src\network;$(SolutionDir)\src\transEngine;$(SolutionDir)\src\file;$(SolutionDir)\src\thread;$(SolutionDir)\src\limiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -144,7 +147,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;HV_STATICLIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\src\;$(SolutionDir)\src\algorithm;$(SolutionDir)\src\hv;$(SolutionDir)\src\json;$(SolutionDir)\src\network;$(SolutionDir)\src\transEngine;$(SolutionDir)\src\file;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\src\;$(SolutionDir)\src\algorithm;$(SolutionDir)\src\hv;$(SolutionDir)\src\json;$(SolutionDir)\src\network;$(SolutionDir)\src\transEngine;$(SolutionDir)\src\file;$(SolutionDir)\src\thread;$(SolutionDir)\src\limiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
