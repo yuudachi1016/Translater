@@ -8,6 +8,13 @@
             "appId": "",
             "qps": "1",
             "length": "2000"
+        },
+        "DeepL": {
+            "requstURL": "https://api-free.deepl.com/v2/translate",
+            "apiKey": "",
+            "qps": "1",
+            "length": "2000",
+            "quota": "50"
         }
     }
 }

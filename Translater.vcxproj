@@ -27,6 +27,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\network\RequstAPI.cpp" />
     <ClCompile Include="src\transEngine\BaiDuEngine.cpp" />
+    <ClCompile Include="src\transEngine\DeepLEngine.cpp" />
     <ClCompile Include="src\transEngine\EngineBase.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -39,6 +40,7 @@
     <ClInclude Include="src\network\RequstAPI.h" />
     <ClInclude Include="src\thread\ThreadPool.h" />
     <ClInclude Include="src\transEngine\BaiDuEngine.h" />
+    <ClInclude Include="src\transEngine\DeepLEngine.h" />
     <ClInclude Include="src\transEngine\EngineBase.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -78,6 +78,9 @@
     <ClCompile Include="src\limiter\RateLimiter.cpp">
       <Filter>源文件\limiter</Filter>
     </ClCompile>
+    <ClCompile Include="src\transEngine\DeepLEngine.cpp">
+      <Filter>源文件\transEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\transEngine\EngineBase.h">
@@ -109,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="src\limiter\RateLimiter.h">
       <Filter>头文件\limiter</Filter>
+    </ClInclude>
+    <ClInclude Include="src\transEngine\DeepLEngine.h">
+      <Filter>头文件\transEngine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
