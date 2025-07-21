@@ -48,7 +48,7 @@ void testBaiDuFunc()
     resetFunc();
     cout << "BaiDu Engine:" << endl;
 
-    EngineBase* ptr = new BaiDuEngine();
+    std::shared_ptr<EngineBase> ptr(new BaiDuEngine());
     ptr->SetFromLanguage("en");
     ptr->SetToLanguage("zh");
     printFunc(transText1, ptr->TranslateText(transText1));
@@ -69,7 +69,7 @@ void testDeepLFunc()
     resetFunc();
     cout << "DeepL Engine:" << endl;
 
-    EngineBase* ptr = new DeepLEngine();
+    std::shared_ptr<EngineBase> ptr(new DeepLEngine());
     ptr->SetFromLanguage("en");
     ptr->SetToLanguage("zh");
     printFunc(transText1, ptr->TranslateText(transText1));
